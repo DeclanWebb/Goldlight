@@ -1,27 +1,68 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Goldlight Reflection Assistant</title>
+  <meta charset="UTF-8" />
+  <title>Goldlight</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Reflection Assistant</h1>
-  <p>This tool is educational only and not medical advice.</p>
-  <textarea id="prompt"></textarea><br>
-  <button onclick="send()">Reflect</button>
-  <pre id="out"></pre>
 
-  <script>
-    async function send() {
-      const prompt = document.getElementById("prompt").value;
-      const res = await fetch("/api/ai", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt })
-      });
-      const data = await res.json();
-      document.getElementById("out").innerText = data.reply;
-    }
-  </script>
+  <!-- Pre-Access Gate -->
+  <div id="access-gate" class="gate">
+    <div class="gate-box">
+      <h1>Goldlight</h1>
+      <p>Pre-access is currently enabled.</p>
+      <input type="password" id="accessCode" placeholder="Enter access code" />
+      <button onclick="unlock()">Enter</button>
+      <p id="error" class="error"></p>
+    </div>
+  </div>
+
+  <!-- Main Site -->
+  <main id="site" class="hidden">
+    <header>
+      <h1>Goldlight</h1>
+      <p class="subtitle">
+        A calm, transparent space for responsible AI interaction.
+      </p>
+    </header>
+
+    <section class="card">
+      <h2>Purpose</h2>
+      <p>
+        Goldlight is designed to explore AI interaction through clarity,
+        safety, and ethical boundaries. The experience emphasizes calm design,
+        transparency, and informed use.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Principles</h2>
+      <ul>
+        <li>Clear limitations</li>
+        <li>User respect</li>
+        <li>Safety-first design</li>
+        <li>No automation without disclosure</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Status</h2>
+      <p>
+        This platform is currently in a controlled access phase.
+        Interactive features may be enabled later.
+      </p>
+    </section>
+
+    <footer>
+      <p>© Goldlight</p>
+    </footer>
+  </main>
+
+  <script src="access.js"></script>
 </body>
 </html>
